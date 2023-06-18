@@ -27,7 +27,7 @@ Aufgaben erfuellen:
     - speichere den lokalen Zustand;
     - starte Aufzeichnungsmodus fuer alle Eingangskanaele;
     - sende Markierungen in alle Ausgangskanaele.
-https://github.com/ShuraBlack/VerteilteSysteme-VSYS/blob/08801a08b6f361046b0abcacd139d5ee876f33ba/src/aqua/blatt3/client/TankModel.java#L63-L75
+https://github.com/ShuraBlack/VerteilteSysteme-VSYS/blob/7901fa7d601ada52ed4051a3648c883c9885fb3c/task_4/src/aqua/blatt3/client/TankModel.java#L63-L75
 
 - Da jeder Klient nur mit seinen linken und rechten Nachbarn kommuniziert, hat
 er logisch betrachtet zwei Eingangs- und zwei Ausgangskanaele. Der Aufzeichnungsmodus kann deshalb einen der Zustaende IDLE, LEFT, RIGHT oder BOTH
@@ -37,7 +37,7 @@ annehmen, in Abhaengigkeit davon, welche Eingangskanaele gerade aufgezeichnet we
 - Befindet sich ein Kanal im Aufzeichnungsmodus, so muessen auf diesem Kanal
 ankommende Fische dem lokalen Zustand hinzugefuegt werden. Passen Sie hierfuer
 die Methode TankModel.receiveFish() entsprechend an.
-https://github.com/ShuraBlack/VerteilteSysteme-VSYS/blob/08801a08b6f361046b0abcacd139d5ee876f33ba/src/aqua/blatt3/client/TankModel.java#L177-L183
+https://github.com/ShuraBlack/VerteilteSysteme-VSYS/blob/7901fa7d601ada52ed4051a3648c883c9885fb3c/task_4/src/aqua/blatt3/client/TankModel.java#L177-L183
 
 - Markierungen werden durch eine neue Nachrichtentyp, den SnapshotMarker,
 repraesentiert. Dieser Marker benoetigt keine Funktionalitaet. Die Klassen
@@ -47,12 +47,12 @@ den SnapshotMarker senden bzw. empfangen koennen.
 
 - Empfaengt ein Klient einen SnapshotMarker, dann agiert er entsprechend dem
 Algorithmus von Lamport zum Ermitteln seinen lokalen Schnappschusses.
-https://github.com/ShuraBlack/VerteilteSysteme-VSYS/blob/08801a08b6f361046b0abcacd139d5ee876f33ba/src/aqua/blatt3/client/TankModel.java#L87-L136
+https://github.com/ShuraBlack/VerteilteSysteme-VSYS/blob/7901fa7d601ada52ed4051a3648c883c9885fb3c/task_4/src/aqua/blatt3/client/TankModel.java#L87-L136
 
 - Ersetzen Sie in der Klasse AquaGui im Menuepunkt Global Snapshot den
 NotImplementedYetController durch einen SnapshotController, der die
 Methode TankModel.initiateSnapshot() aufruft.
-https://github.com/ShuraBlack/VerteilteSysteme-VSYS/blob/08801a08b6f361046b0abcacd139d5ee876f33ba/src/aqua/blatt3/client/SnapshotController.java#L6-L18
+https://github.com/ShuraBlack/VerteilteSysteme-VSYS/blob/7901fa7d601ada52ed4051a3648c883c9885fb3c/task_4/src/aqua/blatt3/client/SnapshotController.java#L6-L18
 
 - Zum Einsammeln der lokalen Schnappschuesse soll ein zusaetzliches Token verwendet
 werden (definieren Sie dazu eine geeignete neue Nachrichtenklasse), das vom Initiator des globalen Schnappschusses erzeugt und einmal durch den Ring geschickt
@@ -62,5 +62,5 @@ haelt es so lange, bis der lokale Schnappschuss vorliegt, addiert seinen Schnapp
 bis es wieder beim Initiator angelangt.
 - Erweitern Sie die Klasse TankView so, dass ein im TankModel vorliegender globaler Schnappschuss angezeigt wird. Fuer die Anzeige koennen Sie beispielsweise die
 Methode JOptionPane.showMessageDialog() verwenden.
-https://github.com/ShuraBlack/VerteilteSysteme-VSYS/blob/08801a08b6f361046b0abcacd139d5ee876f33ba/src/aqua/blatt3/common/msgtypes/SnapshotToken.java#L6-L17
-https://github.com/ShuraBlack/VerteilteSysteme-VSYS/blob/08801a08b6f361046b0abcacd139d5ee876f33ba/src/aqua/blatt3/client/TankModel.java#L138-L163
+https://github.com/ShuraBlack/VerteilteSysteme-VSYS/blob/7901fa7d601ada52ed4051a3648c883c9885fb3c/task_4/src/aqua/blatt3/common/msgtypes/SnapshotToken.java#L5-L17
+https://github.com/ShuraBlack/VerteilteSysteme-VSYS/blob/7901fa7d601ada52ed4051a3648c883c9885fb3c/task_4/src/aqua/blatt3/client/TankModel.java#L138-L163
