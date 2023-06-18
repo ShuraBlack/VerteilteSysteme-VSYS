@@ -6,6 +6,8 @@
 ⚪️ Client ([Aqualife](https://github.com/ShuraBlack/VerteilteSysteme-VSYS/blob/task_7/src/aqua/client/Aqualife.java)) <br>
 🟢 Poisen-Client ([Poisoner](https://github.com/ShuraBlack/VerteilteSysteme-VSYS/blob/task_7/src/aqua/broker/Poisoner.java))
 
+https://github.com/ShuraBlack/VerteilteSysteme-VSYS/blob/19dc9f5b2f2a57f55ffa355a7e9029f9ef362c40/task_7/src/aqua/common/endpoint/SerializableUtil.java#L5-L21
+
 ### Aufgabe 1 – symmetrische Verschluesselung
 
 Zunaechst ist jede Kommunikation zwischen Aqualife-Clients und zwischen Clients und
@@ -28,17 +30,17 @@ vor:
 - Der SecureEndpoint benoetigt außerdem zwei Cipher-Objekte, eines zum Verschluesseln und eines zum Entschluesseln. Verwenden Sie zum Erzeugen der Objekte
   die Fabrikmethode Cipher.getInstance(String transformation), und geben Sie als Transformation wiederum den Verschluesselungsalgorithmus "AES" an. 
   Anschließend muss eines der Objekte zum Verschluesseln und eines zum Entschluesseln initialisiert werden.
-https://github.com/ShuraBlack/VerteilteSysteme-VSYS/blob/d045a86d56f1cced592503498df0f32ed691ca3b/src/aqua/common/endpoint/SecureEndpointSymmetric.java#L20-L49
+https://github.com/ShuraBlack/VerteilteSysteme-VSYS/blob/19dc9f5b2f2a57f55ffa355a7e9029f9ef362c40/task_7/src/aqua/common/endpoint/SecureEndpointSymmetric.java#L20-L49
 
 - Die send-Methode der Klasse SecureEndpoint soll nun zunaechst den PayloadTeil der zu versendenden Nachricht mit Hilfe des Verschluesseler verschluesseln und
   danach die verschluesselte Nachricht ueber den internen normalen Endpoint an den
   gewuenschten Empfaenger verschicken.
-https://github.com/ShuraBlack/VerteilteSysteme-VSYS/blob/d045a86d56f1cced592503498df0f32ed691ca3b/src/aqua/common/endpoint/SecureEndpointSymmetric.java#L51-L63
+https://github.com/ShuraBlack/VerteilteSysteme-VSYS/blob/19dc9f5b2f2a57f55ffa355a7e9029f9ef362c40/task_7/src/aqua/common/endpoint/SecureEndpointSymmetric.java#L51-L63
 
 - Analog sollen die beiden receive-Methoden ankommende Nachrichten von ihrem
   internen Endpunkt entgegennehmen, die Payloads mit Hilfe des entsprechenden
   Ciphers entschluesseln und anschließend an den Aufrufer zurueckgeben.
-https://github.com/ShuraBlack/VerteilteSysteme-VSYS/blob/d045a86d56f1cced592503498df0f32ed691ca3b/src/aqua/common/endpoint/SecureEndpointSymmetric.java#L65C14-L80
+https://github.com/ShuraBlack/VerteilteSysteme-VSYS/blob/19dc9f5b2f2a57f55ffa355a7e9029f9ef362c40/task_7/src/aqua/common/endpoint/SecureEndpointSymmetric.java#L65-L80
 
 - Ersetzen Sie schließlich im Broker und im Client den normalen Endpoint durch
   den neuen SecureEndpoint, so dass alle Kommunikation verschluesselt ablaeuft.
@@ -59,8 +61,8 @@ Loesung dieser Aufgabe wie folgt vor:
 - Die Klasse SecureEndpoint benoetigt nun eine Datenstruktur, in der sie sich
   fuer jeden Kommunikationspartner, mit dem bereits kommuniziert wurde, dessen
   oeffentlichen Schluessel merkt.
-https://github.com/ShuraBlack/VerteilteSysteme-VSYS/blob/d045a86d56f1cced592503498df0f32ed691ca3b/src/aqua/common/endpoint/SecureEndpointAsymmetric.java#L19-L57
-https://github.com/ShuraBlack/VerteilteSysteme-VSYS/blob/d045a86d56f1cced592503498df0f32ed691ca3b/src/aqua/common/endpoint/SecureEndpointAsymmetric.java#L109-L118
+https://github.com/ShuraBlack/VerteilteSysteme-VSYS/blob/19dc9f5b2f2a57f55ffa355a7e9029f9ef362c40/task_7/src/aqua/common/endpoint/SecureEndpointAsymmetric.java#L19-L57
+https://github.com/ShuraBlack/VerteilteSysteme-VSYS/blob/19dc9f5b2f2a57f55ffa355a7e9029f9ef362c40/task_7/src/aqua/common/endpoint/SecureEndpointAsymmetric.java#L109-L118
 
 - Wenn in Folge eines send-Aufrufs eine Nachricht versandt werden soll, wird erst
   ueberprueft, ob der oeffentliche Schluessel des Empfaengers bereits bekannt ist. Falls
@@ -69,11 +71,11 @@ https://github.com/ShuraBlack/VerteilteSysteme-VSYS/blob/d045a86d56f1cced5925034
   KeyExchangeMessage. Beachten Sie, dass diese Nachrichten auf der empfangenden
   Seite nicht nach oben gelangen duerfen, sondern nur zur Kommunikation zwischen
   zwei SecureEndpoints verwendet werden duerfen.
-https://github.com/ShuraBlack/VerteilteSysteme-VSYS/blob/d045a86d56f1cced592503498df0f32ed691ca3b/src/aqua/common/endpoint/SecureEndpointAsymmetric.java#L59-L80
+https://github.com/ShuraBlack/VerteilteSysteme-VSYS/blob/19dc9f5b2f2a57f55ffa355a7e9029f9ef362c40/task_7/src/aqua/common/endpoint/SecureEndpointAsymmetric.java#L59-L80
 
 - In den receive-Methoden muessen Sie zum einen pruefen, ob es sich bei der empfangenen Nachricht um eine KeyExchange-Nachricht handelt und zum anderen alle
   anderen Nachrichten korrekt entschluesseln, bevor sie Sie nach oben reichen.
-https://github.com/ShuraBlack/VerteilteSysteme-VSYS/blob/d045a86d56f1cced592503498df0f32ed691ca3b/src/aqua/common/endpoint/SecureEndpointAsymmetric.java#L82-L107
+https://github.com/ShuraBlack/VerteilteSysteme-VSYS/blob/19dc9f5b2f2a57f55ffa355a7e9029f9ef362c40/task_7/src/aqua/common/endpoint/SecureEndpointAsymmetric.java#L82-L107
 
 - Verwenden Sie zum Ver- und Entschluesseln, aehnlich wie in Aufgabe 1, geeignete
   Cipher-Objekte.
